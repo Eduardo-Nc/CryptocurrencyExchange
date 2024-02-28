@@ -2,6 +2,10 @@ export const types = {
 
   // Home
   UPDATE_HOME: '[home] UPDATE_HOME',
+  UPDATE_DATA_TOTAL_COINS: '[home] UPDATE_DATA_TOTAL_COINS',
+  UPDATE_TOTAL_COINS: '[home] UPDATE_TOTAL_COINS',
+  UPDATE_TOTAL_BASE_ACCOUNT: '[home] UPDATE_TOTAL_BASE_ACCOUNT',
+
 
 
   //send

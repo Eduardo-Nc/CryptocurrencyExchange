@@ -3,7 +3,7 @@ const COLORS = {
   SECONDARY: '#404d55',
   WHITE: '#FFFFFF',
   BLACK: '#000000',
-
+  GREEN: 'green',
   PLACEHOLDER: "#9B9B9B",
   LIGHTGRAY: "#F0F0F7",
   LIGHTGRAY2: "#D7D7D7"
