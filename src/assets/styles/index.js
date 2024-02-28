@@ -1,0 +1,16 @@
+const COLORS = {
+  PRIMARY: '#253037',
+  SECONDARY: '#404d55',
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+
+  PLACEHOLDER: "#9B9B9B",
+  LIGHTGRAY: "#F0F0F7",
+  LIGHTGRAY2: "#D7D7D7"
+};
+
+
+
+export {
+  COLORS
+};
