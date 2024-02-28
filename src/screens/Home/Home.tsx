@@ -1,14 +1,11 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, FlatList } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { Box, Button } from "native-base";
-
-//React Query
-import { useQuery } from 'react-query';
-import baseGetRequest from '../../utils/baseGetRequest';
 
 
 //Styles
 import styles from './styles'
+
 
 //Components
 import MainFooter from '../../components/MainFooter/MainFooter';
@@ -17,7 +14,7 @@ import CombineBalance from './components/CombineBalance/CombineBalance';
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { setDataCoins,setTotalCoinsData, setTotalBaseAccountData } from './redux/actions'
+import {  setTotalBaseAccountData } from './redux/actions'
 
 
 //Navigation
@@ -29,18 +26,12 @@ const Home = (): React.JSX.Element => {
   // Navigator
   const navigator = useNavigation();
 
-  //React Query
-  const {data, error, isLoading} = useQuery(['coins', "coins/list"], baseGetRequest);
 
   // Redux
   const dispatch = useDispatch();
-  const { totalBaseAccount ,dataCoins} = useSelector(state => state.home)
+  const { totalBaseAccount } = useSelector(state => state.home)
 
-
-  useEffect(()=>{
-dispatch(setDataCoins(data ? data :[]))
-  },[])
-
+  
   return (
     <SafeAreaView style={styles.container}>
 
@@ -57,8 +48,10 @@ dispatch(setDataCoins(data ? data :[]))
           Deposit
         </Button>
       </Box>
-      <MainFooter />
 
+
+
+      <MainFooter />
     </SafeAreaView>
   )
 }

@@ -10,14 +10,15 @@ const CombineBalance = () => {
 
   //Redux
   const dispatch = useDispatch();
-  const { homeData, totalCoins, totalBaseAccount } = useSelector(state => state.home)
+  const { totalBaseAccount } = useSelector(state => state.home)
+  const { purchasedCoins } = useSelector(state => state.buy)
 
   const [total, setTotal] = useState(0);
 
-
   useEffect(() => {
-    setTotal((totalCoins ? totalCoins : 0 + totalBaseAccount ? totalBaseAccount : 0))
-  }, [totalCoins, totalBaseAccount])
+    setTotal((totalBaseAccount ? totalBaseAccount : 0))
+    // setTotal((purchasedCoins ? purchasedCoins : 0 + totalBaseAccount ? totalBaseAccount : 0))
+  }, [purchasedCoins, totalBaseAccount])
 
   return (
     <View style={styles.container}>

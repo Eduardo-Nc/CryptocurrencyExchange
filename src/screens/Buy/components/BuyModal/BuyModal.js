@@ -4,6 +4,8 @@ import styles from './styles'
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
+import { setTotalBaseAccountData } from '../../../Home/redux/actions'
+
 
 //Components
 import { ICONS } from '../../../../assets/icons';
@@ -18,20 +20,28 @@ const BuyModal = (props) => {
   const dispatch = useDispatch();
   const { totalBaseAccount } = useSelector(state => state.home)
 
-  console.log("Modal item ", coinItem)
-  console.log("totalBaseAccount ", totalBaseAccount)
 
-  const [quantity, setQuantity] = useState("")
+  const [quantity, setQuantity] = useState("");
+  const [total, setTotal] = useState(0);
+
 
   const validateBuy = () => {
-    let totalBuy = (quantity ? Number(quantity) : 0) * coinItem;
-    console.log("totalBuy ", totalBuy)
-    if (totalBuy > totalBaseAccount) {
-      Alert.alert("You do not have enough money to make the purchase")
+    if (quantity > 0) {
+      if (total > totalBaseAccount) {
+        Alert.alert("You do not have enough money to make the purchase")
+      } else {
+        dispatch(setTotalBaseAccountData(totalBaseAccount - total))
+        setIsVisible(false)
+      }
     } else {
-      setIsVisible(false)
+      Alert.alert("It is necessary to select a quantity.")
     }
   }
+
+  useEffect(() => {
+    let totalBuy = (quantity ? Number(quantity) : 0) * coinItem?.current_price;
+    setTotal(totalBuy)
+  }, [quantity, coinItem])
 
   return (
     <Modal
@@ -55,9 +65,9 @@ const BuyModal = (props) => {
           </TouchableOpacity>
 
           <View style={styles.containerTitle}>
-            <Text style={styles.txtTitle}>Name: {"Nombre moneda"}</Text>
-            <Text style={styles.txtPrice}>Price: {"11000"}</Text>
-            <Text style={styles.txtTotal}>Total: {"332000"}</Text>
+            <Text style={styles.txtTitle}>Name: {coinItem?.name}</Text>
+            <Text style={styles.txtPrice}>Price: {coinItem?.current_price}</Text>
+            <Text style={styles.txtTotal}>Total: {total}</Text>
 
           </View>
 

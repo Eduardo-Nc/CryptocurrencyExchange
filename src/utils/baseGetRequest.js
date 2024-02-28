@@ -3,10 +3,9 @@ const baseURL = 'https://api.coingecko.com/api/v3/';
 
 baseGetRequest = async ({ queryKey }) => {
   const [_, ep] = queryKey
+  // console.log("url ---> ", `${baseURL}${ep}`)
 
-  console.log("url ---> ", `${baseURL}${ep}${keyApi}`)
-
-  const res = await fetch(`${baseURL}${ep}${keyApi}`);
+  const res = await fetch(`${baseURL}${ep}`);
   return res.json();
 
 }

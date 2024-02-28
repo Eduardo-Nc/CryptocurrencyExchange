@@ -1,19 +1,11 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { Image, Text, TouchableOpacity } from 'react-native'
+import React from 'react'
 import styles from './styles'
-
-//Redux
-import { useDispatch, useSelector } from 'react-redux';
 
 
 const CoinItem = (props) => {
 
   const { coinItem, openCoin } = props;
-
-  //Redux
-  const dispatch = useDispatch();
-  // const {  } = useSelector(state => state.home)
-
 
   return (
     <TouchableOpacity
@@ -21,8 +13,9 @@ const CoinItem = (props) => {
         openCoin(coinItem)
       }}
       style={styles.container}>
-      <Text style={styles.txtName}>{"Nombre"}</Text>
-      <Text style={styles.txtPrice}>${"1000"}</Text>
+      <Image style={styles.imgCrypo} source={{ uri: coinItem?.image }} />
+      <Text style={styles.txtName}>{coinItem?.name}</Text>
+      <Text style={styles.txtPrice}>${coinItem?.current_price}</Text>
     </TouchableOpacity>
   )
 }

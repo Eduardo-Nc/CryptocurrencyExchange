@@ -13,6 +13,11 @@ export default StyleSheet.create({
     borderColor: COLORS.LIGHTGRAY2,
     backgroundColor: COLORS.GREEN
   },
+  imgCrypo: {
+    width: 50,
+    height: 50,
+    resizeMode: "contain"
+  },
   txtName: {
     fontSize: 20,
     color: COLORS.BLACK,
@@ -20,7 +25,7 @@ export default StyleSheet.create({
     marginBottom: 10
   },
   txtPrice: {
-    fontSize: 15,
+    fontSize: 18,
     color: COLORS.BLACK,
     fontWeight: "bold"
   },

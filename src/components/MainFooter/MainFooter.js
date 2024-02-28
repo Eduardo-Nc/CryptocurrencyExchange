@@ -36,7 +36,7 @@ const MainFooter = (): React.JSX.Element => {
   const ItemMenu: React.FC<ItemMenuProps> = ({ title, icon, screen }) => {
     return (
       <TouchableOpacity onPress={() => {
-        navigator.push(screen)
+        navigator.navigate(screen)
       }} style={styles.mainContItemMenu}>
         <Image source={icon} style={styles.itemIcon} />
         <Text style={styles.itemTxtTitle}>{title}</Text>
