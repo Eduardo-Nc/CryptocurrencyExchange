@@ -6,6 +6,22 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.WHITE
   },
-
+  mainTitleCont: {
+    paddingLeft: 25,
+    paddingRight: 25,
+    width: "100%",
+    height: 65,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    backgroundColor: COLORS.WHITE,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.LIGHTGRAY2,
+    marginBottom: 20
+  },
+  txtTitleCont: {
+    fontSize: 30,
+    color: COLORS.BLACK,
+    fontWeight: "bold",
+  },
 
 });

@@ -6,12 +6,12 @@ import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const CombineBalance = () => {
+const CombineBalance = () : React.JSX.Element => {
 
   //Redux
   const dispatch = useDispatch();
-  const { totalBaseAccount } = useSelector(state => state.home)
-  const { purchasedCoins, totalAmountInCoins } = useSelector(state => state.buy)
+  const { totalBaseAccount } = useSelector((state:any) => state.home)
+  const { purchasedCoins, totalAmountInCoins } = useSelector((state:any) => state.buy)
   const [total, setTotal] = useState(0);
 
   useEffect(() => {

@@ -1,7 +1,6 @@
-import { View, Text, SafeAreaView, FlatList } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { View, SafeAreaView, FlatList } from 'react-native'
+import React, {useState} from 'react'
 import { Box, Button } from "native-base";
-
 
 //Styles
 import styles from './styles'
@@ -27,16 +26,15 @@ const Home = (): React.JSX.Element => {
   // Navigator
   const navigator = useNavigation();
 
-
   // Redux
   const dispatch = useDispatch();
-  const { totalBaseAccount } = useSelector(state => state.home)
-  const { purchasedCoins } = useSelector(state => state.buy)
+  const { totalBaseAccount } = useSelector((state:any) => state.home)
+  const { purchasedCoins } = useSelector((state:any) => state.buy)
 
-  const [coinItem, setCoinItem] = useState({})
+  const [coinItem, setCoinItem] = useState<object>({})
 
 
-  const openCoin = (item) => {
+  const openCoin = (item:object) => {
     setCoinItem(item)
   };
   
@@ -56,7 +54,7 @@ const Home = (): React.JSX.Element => {
       <Box alignItems="center" marginBottom={5}>
         <Button
           onPress={() => {
-            dispatch(setTotalBaseAccountData(Number(totalBaseAccount ? totalBaseAccount : 0) + 1000))
+            dispatch(setTotalBaseAccountData(Number(totalBaseAccount ? totalBaseAccount : 0) + 100))
             // dispatch(setTotalBaseAccountData(0)) //reset
           }}>
           Deposit

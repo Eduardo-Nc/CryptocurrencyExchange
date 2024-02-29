@@ -1,9 +1,20 @@
 import { Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './styles'
 
+export type coinItemObject = {
+  name:string,
+  quantity:string,
+  totalPrice:string,
+  price:string,
+ };
 
-const CoinItem = (props) => {
+interface Coin {
+  coinItem: coinItemObject,
+  openCoin: any
+}
+
+const CoinItem: FC<Coin> = (props) => {
 
   const { coinItem, openCoin } = props;
 

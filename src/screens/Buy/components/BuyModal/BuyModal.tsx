@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Modal, Image, TextInput, Alert } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,FC } from 'react'
 import styles from './styles'
 
 //Redux
@@ -12,20 +12,33 @@ import { setPurchasedCoins, setTotalAmountInCoins } from '../../redux/actions'
 import { ICONS } from '../../../../assets/icons';
 import { COLORS } from '../../../../assets/styles';
 
+//interfaces
+export type coinItemObject = {
+  id:string,
+  image: string,
+  name:string,
+  current_price:string,
+ };
 
-const BuyModal = (props) => {
+ interface SendModal {
+  coinItem: coinItemObject,
+  isVisible:boolean,
+setIsVisible:any
+}
+
+
+const BuyModal: FC<SendModal> = (props) => {
 
   const { isVisible, setIsVisible, coinItem } = props;
 
   //Redux
   const dispatch = useDispatch();
-  const { totalBaseAccount } = useSelector(state => state.home)
-  const { purchasedCoins } = useSelector(state => state.buy)
+  const { totalBaseAccount } = useSelector((state:any) => state.home)
+  const { purchasedCoins } = useSelector((state:any) => state.buy)
 
 
   const [quantity, setQuantity] = useState("");
   const [total, setTotal] = useState(0);
-
 
   const validateBuy = () => {
     if (Number(quantity) > 0) {
@@ -35,24 +48,26 @@ const BuyModal = (props) => {
         let findCoins = purchasedCoins.find((c) => c.id === coinItem?.id)
         if (findCoins) {
           let totalQuantity = (Number(findCoins.quantity) + Number(quantity));
+          let totalPrice = (Number(totalQuantity) * Number(coinItem?.current_price))
           let updateCoin = {
             ...findCoins,
             name: coinItem?.name,
             quantity: totalQuantity,
-            totalPrice: (totalQuantity * coinItem?.current_price)
+            totalPrice: totalPrice
           }
           let filterCoins = purchasedCoins.filter((c) => c.id !== coinItem?.id)
-          dispatch(setTotalAmountInCoins((totalQuantity * coinItem?.current_price)))
+          dispatch(setTotalAmountInCoins(totalPrice))
           dispatch(setPurchasedCoins([...filterCoins, updateCoin]))
         } else {
           let filterCoins = purchasedCoins.filter((c) => c.id !== coinItem?.id)
+          let totalPrice = (Number(quantity) * Number(coinItem?.current_price))
           dispatch(setPurchasedCoins([...filterCoins, {
             id: coinItem?.id,
             name: coinItem?.name,
             image: coinItem?.image,
             quantity: Number(quantity),
             price: coinItem?.current_price,
-            totalPrice: coinItem?.current_price
+            totalPrice: totalPrice
           }]))
           dispatch(setTotalAmountInCoins(coinItem?.current_price))
         }
@@ -68,7 +83,7 @@ const BuyModal = (props) => {
   }
 
   useEffect(() => {
-    let totalBuy = (quantity ? Number(quantity) : 0) * coinItem?.current_price;
+    let totalBuy = (quantity ? Number(quantity) : 0) * Number(coinItem?.current_price);
     setTotal(totalBuy)
   }, [quantity, coinItem])
 
