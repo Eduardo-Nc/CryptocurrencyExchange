@@ -12,6 +12,12 @@ export default StyleSheet.create({
     marginBottom: 20,
     paddingLeft: 25,
     paddingRight: 25
+  },
+  flatListContainer: {
+    flex: 1,
+    paddingLeft: 25,
+    paddingRight: 25,
+    marginBottom: 70
   }
 
 });

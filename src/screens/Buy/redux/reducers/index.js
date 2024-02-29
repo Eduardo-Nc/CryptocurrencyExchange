@@ -4,7 +4,8 @@ const initialState = {
   buyData: [],
   dataCoins: [],
   totalCoins: [],
-  purchasedCoins: []
+  purchasedCoins: [],
+  totalAmountInCoins: 0
 }
 
 export const buy = (state = initialState, action) => {
@@ -17,7 +18,6 @@ export const buy = (state = initialState, action) => {
       }
 
     case types.UPDATE_DATA_TOTAL_COINS:
-      console.log("action.data ", action.data)
       return {
         ...state,
         dataCoins: action.data,
@@ -35,6 +35,11 @@ export const buy = (state = initialState, action) => {
         purchasedCoins: action.data,
       }
 
+    case types.UPDATE_TOTAL_AMOUNT_IN_COINS:
+      return {
+        ...state,
+        totalAmountInCoins: action.data,
+      }
 
     default:
       return state

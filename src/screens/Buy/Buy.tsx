@@ -27,6 +27,7 @@ const Buy = () => {
   const dispatch = useDispatch();
   const { dataCoins } = useSelector(state => state.buy)
 
+
   const [isVisible,setIsVisible] = useState(false);
   const [coinItem, setCoinItem] = useState({})
 

@@ -15,3 +15,12 @@ export const setTotalCoinsData = (data) => ({
   data,
 })
 
+export const setPurchasedCoins = (data) => ({
+  type: types.UPDATE_PURCHASED_COINS,
+  data,
+})
+
+export const setTotalAmountInCoins = (data) => ({
+  type: types.UPDATE_TOTAL_AMOUNT_IN_COINS,
+  data,
+})
